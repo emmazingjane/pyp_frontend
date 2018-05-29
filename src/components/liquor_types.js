@@ -19,38 +19,6 @@ class Liquor_types extends Component {
     render(){
         console.log(123)
 
-        // console.log('hello', results);
-        // !== null ? this.state.results : null;
-        // let type = this.state.results.liquor_types;
-
-                   
-
-        // results.map(type => {
-        //     return(
-
-        //         <div>
-            
-        //             <div className="instructions">
-        //                 <p>Discover your new favorite drink by selecting the liquor of your choice then browsing our recipes or add your own.</p>
-        //             </div>
-        //             <section className="liquors">
-        //                 <a href="./recipes.html">
-        //                 <div className="col s12 m7">
-        //                     <div className="card">
-        //                     <div className="card-image">
-        //                         {/* <img src={this.state.type.image_url}/> */}
-        //                     </div>
-        //                     <div className="card-content">
-        //                         <p>{this.state.type}</p>
-        //                     </div>
-        //                     </div>
-        //                 </div>
-        //                 </a>
-        //             </section>
-        //         </div>
-        //     )
-        // })
-
     let renderedResults;
     let results = this.state.results;
     if (results === null) {
@@ -58,20 +26,21 @@ class Liquor_types extends Component {
     } else{
         console.log('results', this.state.results)
         renderedResults = this.state.results.data.map(item => {
-        return <div key={item._id}>{item._id.type}
+            console.log('item', item)
+        return <div key={item._id}> 
                     <section className="liquors">
-                         <a href="./recipes.html">
+                         <Link to={`/liquor_types/${item._id}`}>
                          <div className="col s12 m7">
                              <div className="card">
                              <div className="card-image">
                                  {/* <img src={this.state.type.image_url}/> */}
                              </div>
                              <div className="card-content">
-                                 <p>{item._id.type}</p>
+                                 <p>{item.liquorType}</p>
                              </div>
                              </div>
                          </div>
-                         </a>
+                         </Link>
                     </section>
                 </div>
      })

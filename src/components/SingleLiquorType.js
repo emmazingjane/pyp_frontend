@@ -5,23 +5,22 @@ import { Link } from 'react-router-dom';
 
 class SingleLiquorType extends Component {
     state = {
-        results: null,
+        results: [],
     };
 
 
 
+
     componentDidMount() {
-        // let liquorRecipeId = this.props.match.params.liquorRecipe.type;
-        let liquorRecipeId = this.props.match.params
-        console.log(123, liquorRecipeId)
-        // CocktailModel.findRecipes(liquorRecipeId)
-        // .then(data => {
-        //   console.log('SingleCocktail by ID: ', data);
-        //   this.setState({
-        //     liquorRecipe: data.data
-        //   });
-        // });
-      }
+        let id = this.props.match.params.liquor_id;
+        axios.get(`http://localhost:3001/liquor_types/${id}`)
+        .then(data => {
+          console.log('SingleCocktail by ID: ', data.data._id);
+          this.setState({
+            results: data.data
+          });
+      });
+    }
 
     // incrementVote = (liquorRecipeId) => {
     //     console.log(('liquorRecipeId', (liquorRecipeId)))
@@ -42,53 +41,53 @@ class SingleLiquorType extends Component {
 
     render(){
 
-    let results = this.state.results !== null ? this.state.results
-        .sort((a,b) => {
-            return b.votes - a.votes;
-        })
+    // let results = this.state.results !== null ? this.state.results
+    //     .sort((a,b) => {
+    //         return b.votes - a.votes;
+    //     })
 
-        .map(liquorRecipes => {
-            console.log('dranks', liquorRecipes)
-            return(
+    // let results = this.state.results ? this.state.results.map(liquorRecipes => {
+    //         console.log('dranks', liquorRecipes)
+
+    //         return(
         
-            <div>
+    //         <div>
               
-                    <section className="recipes">
+    //                 <section className="recipes">
                     
-                                <div className="card horizontal">
-                                    <div className="card-image">
-                                        {/* <img src={this.liquorRecipes.image_url} /> */}
-                                    </div>
-                                    <div className="card-stacked">
-                                        <div className="card-content">
-                                            <h5>{this.liquorRecipeId.drinkName}</h5>
-                                            <p>{this.liquorRecipeId.description}</p>      
-                                        </div>
-                                        <div className="card-action">
-                                            <a href="./single_recip.html">Make me</a>
+    //                             <div className="card horizontal">
+    //                                 <div className="card-image">
+    //                                     {/* <img src={this.liquorRecipes.image_url} /> */}
+    //                                 </div>
+    //                                 <div className="card-stacked">
+    //                                     <div className="card-content">
+    //                                         <h5>{this.liquorRecipeId.drinkName}</h5>
+    //                                         <p>{this.liquorRecipeId.description}</p>      
+    //                                     </div>
+    //                                     <div className="card-action">
+    //                                         <a href="./single_recip.html">Make me</a>
 
-                                            <p>{this.liquorRecipeId.votes} votes</p>
+    //                                         <p>{this.liquorRecipeId.votes} votes</p>
 
-                                            <div className="rate">
-                                                <button onClick={()=>this.incrementVote(this.state.results.liquor_recipe._id)} className="btn-floating btn-small waves-effect waves-light green"><i className="material-icons">+</i></button>
+    //                                         <div className="rate">
+    //                                             <button onClick={()=>this.incrementVote(this.state.results.liquor_recipe._id)} className="btn-floating btn-small waves-effect waves-light green"><i className="material-icons">+</i></button>
                                                 
-                                                <button onClick={()=>this.decrementVote(this.state.results.liquor_recipe._id)} className="btn-floating btn-small waves-effect waves-light red"><i className="material-icons">-</i></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+    //                                             <button onClick={()=>this.decrementVote(this.state.results.liquor_recipe._id)} className="btn-floating btn-small waves-effect waves-light red"><i className="material-icons">-</i></button>
+    //                                         </div>
+    //                                     </div>
+    //                                 </div>
+    //                             </div>
                         
-                    </section>
-            </div>
-            )
+    //                 </section>
+    //         </div>
+    //         )
            
             
-        })
-
+    //     })
+    //     : <h3>Loading...</h3>
                                     
-        
-        : <h3>Loading...</h3>; 
 
+        let results = <h3>Single Liquor Type</h3>
         return (
             <div>
                 {results}

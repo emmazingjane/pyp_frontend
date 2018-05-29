@@ -14,7 +14,7 @@ class App extends Component {
         <Navigation />
         <Switch>
           <Route exact path='/liquor_types' component={Liquor_types} />
-          <Route path='/liquors/:liquor_id' component={SingleLiquorType} />
+          <Route path='/liquor_types/:liquor_id' component={SingleLiquorType} />
         </Switch>
       </div>
     );
