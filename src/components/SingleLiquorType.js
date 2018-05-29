@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import CocktailModel from '../models/CocktailModel';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
@@ -57,13 +56,13 @@ class SingleLiquorType extends Component {
 
             return(
         
-            <div>
+            <div key={item._id}> >
               
                     <section className="recipes">
                     
                                 <div className="card horizontal">
                                     <div className="card-image">
-                                        <img src={item.image_url} />
+                                        <img src={item.image_url} alt=""/>
                                     </div>
                                     <div className="card-stacked">
                                         <div className="card-content">
@@ -71,8 +70,9 @@ class SingleLiquorType extends Component {
                                             <p>{item.description}</p>      
                                         </div>
                                         <div className="card-action">
-                                            <a href="./single_recip.html">Make me</a>
-
+                                            <Link to={`/liquor_recipes/${item._id}`}>
+                                                <h2> Make Me </h2>
+                                            </Link>
                                             <p>{item.votes} votes</p>
 
                                             {/* <div className="rate">

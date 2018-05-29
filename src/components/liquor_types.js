@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import CocktailModel from '../models/CocktailModel';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
