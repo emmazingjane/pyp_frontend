@@ -5,7 +5,7 @@ class Navigation extends Component {
         return(
             <nav>
                 <div className="nav-wrapper">
-                <a href="./index.html" className="brand-logo">Pick your Poison</a>
+                <a href="./index.html" className="brand-logo">Pick your Poison1</a>
                 <ul id="nav-mobile" className="right hide-on-med-and-down">
                     <li> <a href="./create.html">Share your Poison</a></li>
                 </ul>
