@@ -8,7 +8,7 @@ class Recipe extends Component {
         super();
         this.state = {
             results: null,
-            votes: 0,
+           
         }
 
         this.upVote = this.upVote.bind(this);
@@ -22,37 +22,43 @@ class Recipe extends Component {
             console.log('hhhh', data.data)
             this.setState({
                 results: data.data,
-                votes: data.data.votes,
+                
             });
         
         })
     }
 
-    upVote() {
+    upVote(e) {
+        e.preventDefault();
         console.log("vote button clicked");
         // // axios call
         let id = this.props.match.params.id;
+        let updatedUpVote = this.state.results.votes + 1;
+        let updatedResult  = this.state.results;
+        updatedResult.votes = updatedUpVote;
+        console.log('votes', updatedResult);
         console.log(id);
-        axios.get(`http://localhost:3001/liquor_recipes/${id}`)
-        .then(data => {
-            console.log('single Recipe vote: ', data.data.votes)
-            this.setState({
-                votes: (this.state.votes + 1)
-            })
+        axios.put(`http://localhost:3001/liquor_recipes/${id}`, updatedResult)
+        .then(results => {
+            console.log('RESPONSE: ', results)
+            this.setState({ results: results.data })
         })
     }
 
-    downVote() {
+    downVote(e) {
+        e.preventDefault();
         console.log("vote button clicked");
         // // axios call
         let id = this.props.match.params.id;
+        let updatedDownVote = this.state.results.votes - 1;
+        let updatedResult  = this.state.results;
+        updatedResult.votes = updatedDownVote;
+        console.log('votes', updatedResult);
         console.log(id);
-        axios.get(`http://localhost:3001/liquor_recipes/${id}`)
-        .then(data => {
-            console.log('single Recipe vote: ', data.data.votes)
-            this.setState({
-                votes: (this.state.votes - 1)
-            })
+        axios.put(`http://localhost:3001/liquor_recipes/${id}`, updatedResult)
+        .then(results => {
+            console.log('RESPONSE: ', results)
+            this.setState({ results: results.data })
         })
     }
 
@@ -65,9 +71,9 @@ class Recipe extends Component {
                         <img src={this.state.results.img_url} className="about-image" alt=""/>
                         <div className="rate">
                                 <button onClick={this.upVote} className="btn-floating btn-small waves-effect waves-light green"><i className="material-icons">+</i></button>
-                                    <p>{this.state.votes} votes</p>
+                                    <p>{this.state.results.votes}votes</p>
                                                 
-                                    <button onClick={this.downVote} className="btn-floating btn-small waves-effect waves-light red"><i className="material-icons">-</i></button>
+                                <button onClick={this.downVote} className="btn-floating btn-small waves-effect waves-light red"><i className="material-icons">-</i></button>
                         
                          </div>
                     </div>

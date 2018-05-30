@@ -8,7 +8,6 @@ class SingleLiquorType extends Component {
         this.state = {
             results: null,
         };
-        // this.incrementVote = this.incrementVote.bind(this);
     }
     
     componentDidMount() {
@@ -23,36 +22,18 @@ class SingleLiquorType extends Component {
     }
 
 
-    // incrementVote = (liquorRecipeId) => {
-    //     console.log(('liquorRecipeId', (liquorRecipeId)))
-
-    //     let recipeToUpdate = this.state.results.filter(result => result.type ===(liquorRecipeId))
-    //     let updatedVotes = recipeToUpdate[0].votes + 1;
-    //     let recipe = {...recipeToUpdate[0], votes: updatedVotes};
-
-    //     CocktailModel.voteUpdate(liquorRecipeId, recipe)
-    //     .then(updatedRecipe => {
-    //       let updatedRecipes = this.state.results.filter(recipe => recipe.type !==(liquorRecipeId));
-    //       let returnedRecipe = updatedRecipe.data;
-    //       let newRecipes = updatedRecipes.concat(returnedRecipe);
-    //       this.setState({ results: newRecipes })
-    //     });
-    // }
-
-
     render(){
 
         // let results = this.state.results !== null ? this.state.results
-        // .sort((a,b) => {
-        //     return b.votes - a.votes;
-        // })
         let renderedResults;
         let results = this.state.results;
         if (results === null) {
             renderedResults = <div>Loading...</div>
         } else {
             console.log('results', this.state.results)
-            renderedResults = this.state.results.data.map(item => {
+            renderedResults = this.state.results.data.sort((a,b) => {
+                return b.votes - a.votes;
+            }).map(item => {
                 console.log('item', item)
 
 
