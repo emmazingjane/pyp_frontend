@@ -3,13 +3,14 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 class SingleLiquorType extends Component {
-    state = {
-        results: null,
-    };
-
-
-
-
+    constructor() {
+        super();
+        this.state = {
+            results: null,
+        };
+        // this.incrementVote = this.incrementVote.bind(this);
+    }
+    
     componentDidMount() {
         let id = this.props.match.params.liquor_id;
         axios.get(`http://localhost:3001/liquor_types/${id}`)
@@ -20,6 +21,7 @@ class SingleLiquorType extends Component {
           });
       });
     }
+
 
     // incrementVote = (liquorRecipeId) => {
     //     console.log(('liquorRecipeId', (liquorRecipeId)))
@@ -62,7 +64,7 @@ class SingleLiquorType extends Component {
                     
                                 <div className="card horizontal">
                                     <div className="card-image">
-                                        <img src={item.image_url} alt=""/>
+                                        <img src={item.img_url} alt=""/>
                                     </div>
                                     <div className="card-stacked">
                                         <div className="card-content">
@@ -73,13 +75,11 @@ class SingleLiquorType extends Component {
                                             <Link to={`/liquor_recipes/${item._id}`}>
                                                 <h2> Make Me </h2>
                                             </Link>
-                                            <p>{item.votes} votes</p>
 
-                                            {/* <div className="rate">
-                                                <button onClick={()=>this.incrementVote(this.state.results.liquor_recipe._id)} className="btn-floating btn-small waves-effect waves-light green"><i className="material-icons">+</i></button>
+                                            <div className="rate">
+                                                <p>{item.votes} votes</p>
                                                 
-                                                <button onClick={()=>this.decrementVote(this.state.results.liquor_recipe._id)} className="btn-floating btn-small waves-effect waves-light red"><i className="material-icons">-</i></button>
-                                            </div> */}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

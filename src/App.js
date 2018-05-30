@@ -15,6 +15,7 @@ class App extends Component {
         <Switch>
           <Route exact path='/liquor_types' component={Liquor_types} />
           <Route path='/liquor_types/:liquor_id' component={SingleLiquorType} />
+          {/* <Route path='/liquor_types/:liquor_id' component={SingleLiquorType} /> */}
           <Route path='/liquor_recipes/:id' component={Recipe} />
         </Switch>
       </div>

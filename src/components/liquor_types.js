@@ -10,6 +10,7 @@ class Liquor_types extends Component {
     componentDidMount() {
         axios.get(`http://localhost:3001/liquor_types`)
         .then((data)=>{
+            console.log(data);
             this.setState({results: data});
             console.log(this.state)
         })
