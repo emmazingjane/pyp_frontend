@@ -42,7 +42,8 @@ class SingleLiquorType extends Component {
             <div key={item._id}> >
               
                     <section className="recipes">
-                    
+                        
+                        <Link to={`/liquor_recipes/${item._id}`}>
                                 <div className="card horizontal">
                                     <div className="card-image">
                                         <img src={item.img_url} alt=""/>
@@ -53,17 +54,18 @@ class SingleLiquorType extends Component {
                                             <p>{item.description}</p>      
                                         </div>
                                         <div className="card-action">
-                                            <Link to={`/liquor_recipes/${item._id}`}>
-                                                <h2> Make Me </h2>
-                                            </Link>
+                                            
+                                            <p> Make Me </p>
+                                           
 
-                                            <div className="rate">
+                                        <div className="rate">
                                                 <p>{item.votes} votes</p>
                                                 
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                        </Link>
                         
                     </section>
             </div>)

@@ -67,26 +67,15 @@ background-color: #c0c2ce;
   width: 100%;
   font-size: 1.5em;
   text-align: center;
+  margin-bottom: 2em;
 }
-
-.liquors {
-  display: flex;
-  justify-content: space-around;
-}
-.card {
-  width: 12em;
-  height: 15em;
-}
-
-.card-image img {
-  width: 100%;
-  height: 75%;
-}
-
-.card-content {
-  text-align: center;
-  font-size: 1em;
-  font-weight: bold;
+/* liquor types */
+.type {
+  color: #000;
+  padding: 1em;
+  margin: .75em;
+  border: 1px solid #000;
+  font-size: 2em;
 }
 
 /* recipes page */
@@ -100,6 +89,14 @@ background-color: #c0c2ce;
 .card.horizontal .card-image {
   width: 20em;
 }
+.card.horizontal .card-image {
+  height: 17em;
+}
+
+.card.horizontal .card-image img {
+  height: 100%;
+}
+
 
 .card.horizontal .card-image img {
   width: 100%;
@@ -118,18 +115,28 @@ background-color: #c0c2ce;
   justify-content: space-between;
 }
 
-.card .card-action .rate a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-large):not(.btn-floating){
+.rate {
+  display: flex;
+  flex-direction: row;
+  margin-left: 4em;
+}
+
+.rate p {
+  padding: 1em;
+}
+
+.btn-floating.btn-small {
+  margin-top: 2em;
+}
+
+ .card .card-action .rate a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-large):not(.btn-floating){
+  margin: auto;
+}
+
+.card .card-action a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-large):not(.btn-floating){
   margin: auto;
 } 
 
-/* .card .card-action a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-large):not(.btn-floating){
-  margin: auto;
-} */ 
-
-
-.card-action p {
-  margin: auto;
-}
 
 /* single recipe page */
 .single-recipe-body {
@@ -143,7 +150,6 @@ background-color: #c0c2ce;
 }
 
 .column-2 h3 {
-  text-align: center;
   margin: 0;
 }
 
@@ -157,4 +163,18 @@ background-color: #c0c2ce;
 
 .single-recipe-body a:hover {
   background-color: beige;
+}
+
+.recipes p {
+  color: #000;
+}
+
+.card-action p {
+  padding: 1em;
+}
+
+/* newrink*/
+
+.row{
+  margin-top: 1em;
 }

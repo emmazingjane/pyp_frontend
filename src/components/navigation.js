@@ -8,7 +8,8 @@ class Navigation extends Component {
                 <div className="nav-wrapper">
                 <Link to="/liquor_types" className="brand-logo">Pick your Poison</ Link>
                 <ul id="nav-mobile" className="right hide-on-med-and-down">
-                    <li> <a href="./create.html">Share your Poison</a></li>
+                    <Link to="/liquor_recipes"> Share Your Poison </Link>
+
                 </ul>
                 </div>
             </nav>

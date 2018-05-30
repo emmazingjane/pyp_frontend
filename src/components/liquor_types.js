@@ -27,22 +27,17 @@ class Liquor_types extends Component {
         console.log('results', this.state.results)
         renderedResults = this.state.results.data.map(item => {
             console.log('item', item)
-        return <div key={item._id}> 
-                    <section className="liquors">
+        return <span key={item._id}> 
+                    <span className="liquors">
                          <Link to={`/liquor_types/${item._id}`}>
-                         <div className="col s12 m7">
-                             <div className="card">
-                             <div className="card-image">
-                                 {/* <img src={this.state.type.image_url}/> */}
-                             </div>
-                             <div className="card-content">
-                                 <p>{item.liquorType}</p>
-                             </div>
-                             </div>
-                         </div>
+                                
+                                 <span className="type">{item.liquorType}</span>
+                                 
+
+                         
                          </Link>
-                    </section>
-                </div>
+                    </span>
+                </span>
      })
     }
 
@@ -51,14 +46,14 @@ class Liquor_types extends Component {
         <div>
             <div className="jumbotron">
                 <span className="poison-heading">
-                    <h3>Pick Your Poisonsss</h3>
+                    <h3>Pick Your Poison</h3>
                     <h5>share and find the best drinks to wet your whistle</h5>
                 </span>
-        </div>
+            </div>
           
-        <div className="instructions">
-            <p>Discover your new favorite drink by selecting the liquor of your choice then browsing our recipes or add your own.</p>
-        </div>
+            <div className="instructions">
+                <p>Discover your new favorite drink by selecting the liquor of your choice then browsing our recipes or add your own.</p>
+            </div>
             {renderedResults}
             
 
