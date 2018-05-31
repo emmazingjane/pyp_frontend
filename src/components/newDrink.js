@@ -6,20 +6,26 @@ import {Button, NavItem, Dropdown} from 'react-materialize'
 
 
 class newDrink extends Component {
-    state= {
-        thumbnail: '',
-        drinkName: '',
-        description: '',
-        ingredients: '',
-        instructions: '',
-        liquorType: 'Choose your liquor type',
+    constructor() {
+        super();
+        this.state= {
+            thumbnail: '',
+            drinkName: '',
+            description: '',
+            ingredients: '',
+            instructions: '',
+            liquorType: 'Choose your liquor type',
+            votes: 0,
+        };
 
-        // dropdownOpen: false,
-    };
+        this.onFormSubmit = this.onFormSubmit.bind(this);
+
+    }
+
 
     handleThumbnailChange = (e) => {
         this.setState({
-          title: e.target.value,
+          thumbnail: e.target.value,
         });
       };
     
@@ -51,53 +57,32 @@ class newDrink extends Component {
         
       };
       
-    //   handleTypeChange = (e) => {
-    //     this.setState({
-    //       thumbnail: e.target.value,
-    //     });
-        
-    //   };
 
       handleLiquor = (e) => {
           let selectedLiquor = e.target.text;
-          let liquor = selectedLiquor.toLowerCase();
           console.log(this.state)
-          this.setState({liquorType: liquor})
+          this.setState({liquorType: selectedLiquor})
       }
     
     
     onFormSubmit = (e)=> {
         e.preventDefault();
-        console.log('Form Submit!')
-    
-        let formData = {
-          thumbnail: this.state.img_url,
-          drinkName: this.state.drinkName,
-          description: this.state.description,
-          ingredients: this.state.ingredients,
-          instructions: this.state.instructions,
-          liquorType: this.state.liquorType,
-        };
-        console.log("this is the form data:", formData);  
+        axios.post(`http://localhost:3001/liquor_recipes`, {
+            img_url: this.state.thumbnail,
+            drinkName: this.state.drinkName,
+            description: this.state.description,
+            ingredients: this.state.ingredients,
+            instructions: this.state.instructions,
+            liquorType: this.state.liquorType,
+            votes: this.state.votes,
+        }).then( (res) => {
+            console.log("server res: ", res.data._id);
+            console.log(this.props.history);
+            this.props.history.push(`/liquor_recipes/${res.data._id}`);
+        })
+   
     }
 
-        componentDidMount(newDrink){
-        
-        axios.post(`http://localhost:3001/liquor_recipes`, newDrink)
-        .then((data) => {
-          console.log('New recipe :', data);
-          this.setState({
-            results: newDrink,
-          })
-        //   this.props.histroy.push('/liquor_types');
-        })
-        }
-
-    // toggle = () =>{
-    //     this.setState(prevState => ({
-    //     dropdownOpen: !prevState.dropdownOpen
-    //     }));
-    //  }
 
       render(){
 
@@ -108,23 +93,23 @@ class newDrink extends Component {
             <form onSubmit={this.onFormSubmit} className="col s12">
               <div className="row">
                 <div className="input-field col s12">
-                  <input onChange={ this.handleThumbnailChange } id="img_url" type="text" className="img_url" />
+                  <input onChange={ this.handleThumbnailChange } id="img_url" type="text" className="img_url" required/>
                   <label htmlFor="thumbnail">Sumbit a link of your image</label>
                 </div>
                 <div className="input-field col s12">
-                    <input onChange={ this.handleDrinkNameChange } id="drink_name" type="text" className="drink_name" />
+                    <input onChange={ this.handleDrinkNameChange } id="drink_name" type="text" className="drink_name" required/>
                     <label htmlFor="drink_name">Name your Drink</label>
                   </div>
                 <div className="input-field col s12">
-                    <input  onChange={ this.handleDescriptionlChange } id="description" type="text" className="description" />
+                    <input  onChange={ this.handleDescriptionChange } id="description" type="text" className="description" required/>
                     <label htmlFor="description">What's it like?</label>
                 </div>
                 <div className="input-field col s12">
-                    <input onChange={ this.handleIngredientsChange } id="ingredients" type="text" className="ingredients" />
+                    <input onChange={ this.handleIngredientsChange } id="ingredients" type="text" className="ingredients" required/>
                     <label htmlFor="ingredients">What do you need?</label>
                 </div>
                 <div className="input-field col s12">
-                    <input  onChange={ this.handleInstructionsChange } id="instructions" type="text" className="instructions" />
+                    <input  onChange={ this.handleInstructionsChange } id="instructions" type="text" className="instructions" required/>
                     <label htmlFor="instructions">How do you make it?</label>
                 
                 </div>
