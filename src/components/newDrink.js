@@ -67,7 +67,11 @@ class newDrink extends Component {
     
     onFormSubmit = (e)=> {
         e.preventDefault();
-        axios.post(`http://localhost:3001/liquor_recipes`, {
+        // axios.post(`http://localhost:3001/liquor_recipes`, {
+// // Heroku:
+        axios.post(`https://pyp-backend.herokuapp.com/liquor_recipes`, {
+
+
             img_url: this.state.thumbnail,
             drinkName: this.state.drinkName,
             description: this.state.description,
@@ -77,8 +81,9 @@ class newDrink extends Component {
             votes: this.state.votes,
         }).then( (res) => {
             console.log("server res: ", res.data._id);
-            console.log(this.props.history);
+            console.log('props history', this.props);
             this.props.history.push(`/liquor_recipes/${res.data._id}`);
+
         })
    
     }
@@ -93,23 +98,23 @@ class newDrink extends Component {
             <form onSubmit={this.onFormSubmit} className="col s12">
               <div className="row">
                 <div className="input-field col s12">
-                  <input onChange={ this.handleThumbnailChange } id="img_url" type="text" className="img_url" required/>
+                  <input onChange={ this.handleThumbnailChange } id="img_url" type="text" className="img_url" />
                   <label htmlFor="thumbnail">Sumbit a link of your image</label>
                 </div>
                 <div className="input-field col s12">
-                    <input onChange={ this.handleDrinkNameChange } id="drink_name" type="text" className="drink_name" required/>
+                    <input onChange={ this.handleDrinkNameChange } id="drink_name" type="text" className="drink_name" />
                     <label htmlFor="drink_name">Name your Drink</label>
                   </div>
                 <div className="input-field col s12">
-                    <input  onChange={ this.handleDescriptionChange } id="description" type="text" className="description" required/>
+                    <input  onChange={ this.handleDescriptionChange } id="description" type="text" className="description" />
                     <label htmlFor="description">What's it like?</label>
                 </div>
                 <div className="input-field col s12">
-                    <input onChange={ this.handleIngredientsChange } id="ingredients" type="text" className="ingredients" required/>
+                    <input onChange={ this.handleIngredientsChange } id="ingredients" type="text" className="ingredients" />
                     <label htmlFor="ingredients">What do you need?</label>
                 </div>
                 <div className="input-field col s12">
-                    <input  onChange={ this.handleInstructionsChange } id="instructions" type="text" className="instructions" required/>
+                    <input  onChange={ this.handleInstructionsChange } id="instructions" type="text" className="instructions" />
                     <label htmlFor="instructions">How do you make it?</label>
                 
                 </div>

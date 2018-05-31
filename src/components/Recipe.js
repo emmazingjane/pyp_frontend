@@ -17,7 +17,9 @@ class Recipe extends Component {
 
     componentDidMount() {
         let id = this.props.match.params.id;
-        axios.get(`http://localhost:3001/liquor_recipes/${id}`)
+        // axios.get(`http://localhost:3001/liquor_recipes/${id}`)
+        // // Heroku: (3 total)
+        axios.get(`https://pyp-backend.herokuapp.com/liquor_recipes/${id}`)
         .then((data)=>{
             console.log('hhhh', data.data)
             this.setState({
@@ -38,16 +40,22 @@ class Recipe extends Component {
         updatedResult.votes = updatedUpVote;
         console.log('votes', updatedResult);
         console.log(id);
-        axios.put(`http://localhost:3001/liquor_recipes/${id}`, updatedResult)
+        // axios.put(`http://localhost:3001/liquor_recipes/${id}`, updatedResult)
+        // // Heroku:
+        axios.put(`https://pyp-backend.herokuapp.com/liquor_recipes/${id}`, updatedResult)
         .then(results => {
             console.log('RESPONSE: ', results)
             this.setState({ results: results.data })
         })
     }
 
+    handleBack = () => {
+        this.props.history.goBack();
+    }
+
     downVote(e) {
         e.preventDefault();
-        console.log("vote button clicked");
+        console.log("vote button clicked"); 
         // // axios call
         let id = this.props.match.params.id;
         let updatedDownVote = this.state.results.votes - 1;
@@ -55,7 +63,9 @@ class Recipe extends Component {
         updatedResult.votes = updatedDownVote;
         console.log('votes', updatedResult);
         console.log(id);
-        axios.put(`http://localhost:3001/liquor_recipes/${id}`, updatedResult)
+        // axios.put(`http://localhost:3001/liquor_recipes/${id}`, updatedResult)
+        // // Heroku:
+        axios.put(`https://pyp-backend.herokuapp.com/liquor_recipes/${id}`, updatedResult)
         .then(results => {
             console.log('RESPONSE: ', results)
             this.setState({ results: results.data })
@@ -65,6 +75,7 @@ class Recipe extends Component {
     render(){
         // let results = this.state.results !== null ? this.state.results : <h2>Loading...</h2>
         console.log("help", this.state.results)
+        console.log(1111, this.state)
         let results = this.state.results !== null
             ? <div className="single-recipe-body">
                     <div className="column-1">
@@ -83,8 +94,10 @@ class Recipe extends Component {
                         
                         <h4>How to make</h4>
                         <p>{this.state.results.instructions}</p>
+                        
+                        {/* this.props.history.push(`/liquor_recipes/${res.data._id}`); */}
+                        <button onClick={this.handleBack} className="waves-effect waves-light btn-small">Choose a Different Drink </button>
 
-                    <Link to={`/${this.state.results.liquorType}`} className="waves-effect waves-light btn-small">Choose a Different Drink </ Link>
                     </div>
                 </div>
             : '<h3>Loading...</h3>'

@@ -13,6 +13,8 @@ class SingleLiquorType extends Component {
     componentDidMount() {
         let id = this.props.match.params.liquor_id;
         axios.get(`http://localhost:3001/liquor_types/${id}`)
+        // // heroku:
+        axios.get(`https://pyp-backend.herokuapp.com/liquor_types/${id}`)
         .then(data => {
           console.log('SingleCocktail by ID: ', data);
           this.setState({

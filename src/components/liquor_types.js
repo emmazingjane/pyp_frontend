@@ -8,7 +8,10 @@ class Liquor_types extends Component {
     };
 
     componentDidMount() {
-        axios.get(`http://localhost:3001/liquor_types`)
+
+        // axios.get(`http://localhost:3001/liquor_types`)
+        // // Heroku route:
+        axios.get(`https://pyp-backend.herokuapp.com/liquor_types`)
         .then((data)=>{
             console.log(data);
             this.setState({results: data});
