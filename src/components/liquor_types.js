@@ -28,10 +28,21 @@ class Liquor_types extends Component {
         renderedResults = this.state.results.data.map(item => {
             console.log('item', item)
         return <span key={item._id}> 
-                    <span className="liquors">
+                    <span className="flex-container">
                          <Link to={`/liquor_types/${item._id}`}>
                                 
-                                 <span className="type">{item.liquorType}</span>
+                                 
+                                {/* <span className="type">{item.liquorType}</span> */}
+                                        <span className="row s12 m7">
+                                            <div className="card">
+                                                <div className="card-image">
+                                                    <img src="http://www.halloweenclipart.com/halloween_clipart_images/skull_and_crossbones__symbol_for_poison_0071-1002-0615-1351_SMU.jpg" />
+                                                </div>
+                                                <div className="card-content">
+                                                    <p className="type">{item.liquorType}</p>
+                                                </div>
+                                            </div>
+                                        </span>
                                  
 
                          

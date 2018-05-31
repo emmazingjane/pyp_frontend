@@ -64,7 +64,7 @@ class Recipe extends Component {
 
     render(){
         // let results = this.state.results !== null ? this.state.results : <h2>Loading...</h2>
-
+        console.log("help", this.state.results)
         let results = this.state.results !== null
             ? <div className="single-recipe-body">
                     <div className="column-1">
@@ -84,8 +84,7 @@ class Recipe extends Component {
                         <h4>How to make</h4>
                         <p>{this.state.results.instructions}</p>
 
-
-                        {/* <a className="waves-effect waves-light btn-small" href="./recipes.html">Choose a Different Drink</a> */}
+                    <Link to={`/${this.state.results.liquorType}`} className="waves-effect waves-light btn-small">Choose a Different Drink </ Link>
                     </div>
                 </div>
             : '<h3>Loading...</h3>'
