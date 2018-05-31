@@ -40,6 +40,7 @@ background-color: #949d7d;
 .brand-logo {
 margin-left: 1em;
 }
+
 nav a {
 color: #000;
 font-weight: 600;
@@ -78,7 +79,7 @@ background-color: #c0c2ce;
 .card {
   width: 10em;
   height: 12em;
-  margin: 1.6em;
+  margin: 3em;
 }
 
 .card-image img {
