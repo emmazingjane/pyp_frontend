@@ -193,8 +193,19 @@ background-color: #c0c2ce;
   padding: 1em;
 }
 
-/* newrink*/
+/* newdrink*/
 
 .row{
   margin-top: 1em;
+}
+
+
+
+.btn {
+  background-color: #949d7d;
+  margin-bottom: 2em;
+}
+
+.btn:hover {
+  background-color: #c0c2ce;
 }

@@ -17,9 +17,9 @@ class Recipe extends Component {
 
     componentDidMount() {
         let id = this.props.match.params.id;
-        // axios.get(`http://localhost:3001/liquor_recipes/${id}`)
+        axios.get(`http://localhost:3001/liquor_recipes/${id}`)
         // // Heroku: (3 total)
-        axios.get(`https://pyp-backend.herokuapp.com/liquor_recipes/${id}`)
+        // axios.get(`https://pyp-backend.herokuapp.com/liquor_recipes/${id}`)
         .then((data)=>{
             console.log('hhhh', data.data)
             this.setState({
@@ -40,9 +40,9 @@ class Recipe extends Component {
         updatedResult.votes = updatedUpVote;
         console.log('votes', updatedResult);
         console.log(id);
-        // axios.put(`http://localhost:3001/liquor_recipes/${id}`, updatedResult)
+        axios.put(`http://localhost:3001/liquor_recipes/${id}`, updatedResult)
         // // Heroku:
-        axios.put(`https://pyp-backend.herokuapp.com/liquor_recipes/${id}`, updatedResult)
+        // axios.put(`https://pyp-backend.herokuapp.com/liquor_recipes/${id}`, updatedResult)
         .then(results => {
             console.log('RESPONSE: ', results)
             this.setState({ results: results.data })
@@ -63,9 +63,9 @@ class Recipe extends Component {
         updatedResult.votes = updatedDownVote;
         console.log('votes', updatedResult);
         console.log(id);
-        // axios.put(`http://localhost:3001/liquor_recipes/${id}`, updatedResult)
+        axios.put(`http://localhost:3001/liquor_recipes/${id}`, updatedResult)
         // // Heroku:
-        axios.put(`https://pyp-backend.herokuapp.com/liquor_recipes/${id}`, updatedResult)
+        // axios.put(`https://pyp-backend.herokuapp.com/liquor_recipes/${id}`, updatedResult)
         .then(results => {
             console.log('RESPONSE: ', results)
             this.setState({ results: results.data })

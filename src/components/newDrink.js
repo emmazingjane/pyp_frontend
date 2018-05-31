@@ -67,9 +67,9 @@ class newDrink extends Component {
     
     onFormSubmit = (e)=> {
         e.preventDefault();
-        // axios.post(`http://localhost:3001/liquor_recipes`, {
+        axios.post(`http://localhost:3001/liquor_recipes`, {
 // // Heroku:
-        axios.post(`https://pyp-backend.herokuapp.com/liquor_recipes`, {
+        // axios.post(`https://pyp-backend.herokuapp.com/liquor_recipes`, {
 
 
             img_url: this.state.thumbnail,
@@ -119,10 +119,6 @@ class newDrink extends Component {
                 
                 </div>
 
-                <div className="input-field col s12">
-  
-                   
-                </div>
                         <div>
                             <Dropdown trigger={
                                 <Button>{this.state.liquorType}</Button>
